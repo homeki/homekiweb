@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Homeki</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="bootstrap-assets/css/bootstrap.css" rel="stylesheet">
+    
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="bootstrap-assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../bootstrap-assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../bootstrap-assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../bootstrap-assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../bootstrap-assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../bootstrap-assets/ico/apple-touch-icon-57-precomposed.png">
+    <!-- Homeki specific things -->
+    <link href="lib/css/sprite.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Homeki</a>
+          <div class="nav-collapse">
+            <ul class="nav tabs">
+              <li><a href="#devices">Devices</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <div class="container">
+            <div class="hero-unit">
+                <h1>Hello!</h1>
+                <p>If you would like to connect something in your home to Homeki, click <a>devices.</p>
+                <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+            </div>
+        </div>
+        <div id="devices" class="row">
+        </div>
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="lib/js/sprintf-0.7-beta1.js"></script>
+    <script src="lib/js/jquery-1.8.0.js"></script>
+    
+    <!--<script src="../bootstrap-assets/js/jquery.js"></script> -->
+    <script src="../bootstrap-assets/js/bootstrap-transition.js"></script>
+    <script src="../bootstrap-assets/js/bootstrap-alert.js"></script>
+    <script src="../bootstrap-assets/js/bootstrap-modal.js"></script>
+    <script src="../bootstrap-assets/js/bootstrap-dropdown.js"></script>
+    <script src="../bootstrap-assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../bootstrap-assets/js/bootstrap-tab.js"></script>
+    <script src="../bootstrap-assets/js/bootstrap-tooltip.js"></script>
+    <script src="../bootstrap-assets/js/bootstrap-popover.js"></script>
+    <script src="../bootstrap-assets/js/bootstrap-button.js"></script>
+    <script src="../bootstrap-assets/js/bootstrap-collapse.js"></script>
+    <script src="../bootstrap-assets/js/bootstrap-carousel.js"></script>
+    <script src="../bootstrap-assets/js/bootstrap-typeahead.js"></script>
+    <script lang="javascript">
+    HOMEKI_URL = "http://192.168.0.112:5000";
+    var _unique = (new Date()).getTime();
+    function unique(){
+        _unique = _unique + 1;
+        return "?_="+_unique;
+    }
+    function deviceIsOn(device){
+        if(!device.channelValues || !device.channelValues.length) return false;
+        for(i in device.channelValues){
+            if(device.channelValues[i].id == 0) return device.channelValues[i].lastValue == 1;
+        }
+        return false;
+    }
+    function requestDeviceStatus(id, callback){
+        $.ajax({
+            url : HOMEKI_URL+ sprintf('/device/%d/get%s',id,unique()),
+            cache : false,
+            dataType: 'json',
+            success : callback,
+            error   : function(e) {  callback() }
+        });
+    }
+    function toggleDevice(device){
+        var $btn = $(this);
+        if(!$btn.hasClass('status-loading')) {
+            $btn.addClass('status-loading');
+            requestDeviceStatus($btn.data('id'), function(device) {
+                if(device) {
+                    $.ajax({
+                        url     : HOMEKI_URL + sprintf('/device/%d/channel/0/set?value=%d',device.id,deviceIsOn(device) ? 0 : 1),
+                        success : function(data){
+                            $btn.toggleClass('status-on' , !deviceIsOn(device)).removeClass('status-loading');
+                        },
+                        error   : function(e){
+                            $btn.removeClass('status-loading').addClass('status-error');
+                            window.setInterval(function(){
+                                $btn.removeClass('status-error');
+                            }, 3000)
+                        }
+                    });
+                }
+            })
+        }
+    }
+    function createDeviceListElements(devices){
+        var $holder = $("<div/>");
+        $.each(devices,function(i,dev){
+            $holder.append($("<div/>").addClass("span2")
+                            .append($("<h2/>").html(dev.name))
+                            .append($("<p/>").html(dev))
+                            .append($("<a/>").addClass("status-icon").toggleClass('status-on',deviceIsOn(dev))
+                                .data(dev).bind('click', toggleDevice))
+                            );
+        });
+        return $holder.children();
+    }
+    $(function(){
+        ready = 0;
+        $.ajax({
+            url : HOMEKI_URL+ '/device/list'+unique(),
+            cache : false,
+            dataType: 'json',
+            success : function(data){
+                $("#devices").append(createDeviceListElements(data))
+            },
+            error   : function(e) {  console.log(e); }
+        });
+    });
+    </script>
+  </body>
+</html>
