@@ -2,6 +2,7 @@
 	background-image:url('../img/sprite.png');
 	width: 25px;
 	height:25px;
+	margin-top:4px;
 	cursor:hand;
 	cursor:pointer;
 	background-position-y: -100px;
