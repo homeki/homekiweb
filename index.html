@@ -30,6 +30,8 @@
     <link rel="apple-touch-icon-precomposed" href="../bootstrap-assets/ico/apple-touch-icon-57-precomposed.png">
     <!-- Homeki specific things -->
     <link href="lib/css/sprite.css" rel="stylesheet">
+    <link href="lib/css/homeki.css" rel="stylesheet">
+    <link href="lib/css/ui-lightness/jquery-ui-1.8.23.custom.css" rel="stylesheet">
   </head>
 
   <body>
@@ -71,6 +73,9 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="lib/js/sprintf-0.7-beta1.js"></script>
     <script src="lib/js/jquery-1.8.0.js"></script>
+    <script src="lib/js/jquery-ui-1.8.23.custom.min.js"></script>
+    <script src="lib/js/homeki-api.js"></script>
+    <script src="lib/js/jquery.deviceToggler.js"></script>
     
     <!--<script src="../bootstrap-assets/js/jquery.js"></script> -->
     <script src="../bootstrap-assets/js/bootstrap-transition.js"></script>
@@ -86,66 +91,37 @@
     <script src="../bootstrap-assets/js/bootstrap-carousel.js"></script>
     <script src="../bootstrap-assets/js/bootstrap-typeahead.js"></script>
     <script lang="javascript">
-    HOMEKI_URL = "http://192.168.0.112:5000";
-    var _unique = (new Date()).getTime();
-    function unique(){
-        _unique = _unique + 1;
-        return "?_="+_unique;
-    }
-    function deviceIsOn(device){
-        if(!device.channelValues || !device.channelValues.length) return false;
-        for(i in device.channelValues){
-            if(device.channelValues[i].id == 0) return device.channelValues[i].lastValue == 1;
-        }
-        return false;
-    }
-    function requestDeviceStatus(id, callback){
-        $.ajax({
-            url : HOMEKI_URL+ sprintf('/device/%d/get%s',id,unique()),
-            cache : false,
-            dataType: 'json',
-            success : callback,
-            error   : function(e) {  callback() }
-        });
-    }
-    function toggleDevice(device){
+
+    function toggleDeviceFunction(device){
         var $btn = $(this);
         if(!$btn.hasClass('status-loading')) {
             $btn.addClass('status-loading');
-            requestDeviceStatus($btn.data('id'), function(device) {
-                if(device) {
-                    $.ajax({
-                        url     : HOMEKI_URL + sprintf('/device/%d/channel/0/set?value=%d',device.id,deviceIsOn(device) ? 0 : 1),
-                        success : function(data){
-                            $btn.toggleClass('status-on' , !deviceIsOn(device)).removeClass('status-loading');
-                        },
-                        error   : function(e){
-                            $btn.removeClass('status-loading').addClass('status-error');
-                            window.setInterval(function(){
-                                $btn.removeClass('status-error');
-                            }, 3000)
-                        }
-                    });
+            toggleDevice($btn.data('id'), function(success, status){
+                if(success) {
+                    $btn.toggleClass('status-on' , status).removeClass('status-loading');
                 }
-            })
+                else {
+                    $btn.removeClass('status-loading').addClass('status-error');
+                    window.setInterval(function(){
+                        $btn.removeClass('status-error');
+                    }, 3000);
+                }
+            });
         }
     }
     function createDeviceListElements(devices){
         var $holder = $("<div/>");
+
         $.each(devices,function(i,dev){
-            $holder.append($("<div/>").addClass("span2")
-                            .append($("<h2/>").html(dev.name))
-                            .append($("<p/>").html(dev))
-                            .append($("<a/>").addClass("status-icon").toggleClass('status-on',deviceIsOn(dev))
-                                .data(dev).bind('click', toggleDevice))
-                            );
+            var $device = $(this).deviceToggler(dev);
+            $holder.append($device);
         });
         return $holder.children();
     }
     $(function(){
         ready = 0;
         $.ajax({
-            url : HOMEKI_URL+ '/device/list'+unique(),
+            url : HOMEKI_URL+ '/device/list',
             cache : false,
             dataType: 'json',
             success : function(data){

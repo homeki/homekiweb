@@ -4,3 +4,10 @@
 	margin-left:20px;
 	vertical-align:sub;
 }
+
+.device-holder {
+	border: 2px solid #DDD;
+	border-radius: 4px;
+	padding:5px;
+	background: #FAFAFA;
+}
