@@ -6,6 +6,13 @@ if [ "$1" = "configure" ] ; then
 	echo -n "changing owner and permissions in /opt/homeki/www: "
 	chown -R homeki:homeki /opt/homeki/www
 	echo "done"
+
+	if [ -z "$2" ]; then
+		# only restart if this is a fresh install (no version argument supplied)
+		echo "------------------- APT: RESTARTED HOMEKI -------------------" >> /opt/homeki/stdout.log
+	    /etc/init.d/homekid restart
+		echo "fresh install, restarted homeki."
+	fi
 fi
 
 exit 0
