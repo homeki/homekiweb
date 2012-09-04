@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+if [ "$1" = "configure" ] ; then
+	echo -n "changing owner and permissions in /opt/homeki/www: "
+	chown -R homeki:homeki /opt/homeki/www
+	echo "done"
+fi
+
+exit 0
