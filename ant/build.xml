@@ -21,7 +21,7 @@
 		<mkdir dir="../build/dist" />
 		<for list="i386,amd64,armhf" param="arch">
 			<sequential>
-				<deb todir="../build/dist" package="homeki-web" section="misc" depends="homeki" preinst="preinst" prerm="prerm" postrm="postrm" postinst="postinst" architecture="@{arch}">
+				<deb todir="../build/dist" package="homeki-web" section="misc" depends="iptables, homeki" preinst="preinst" prerm="prerm" postrm="postrm" postinst="postinst" architecture="@{arch}">
 					<version upstream="${version}" />
 					<maintainer name="Homeki Development Team" email="contact@homeki.com" />
 					<description synopsis="Web root for Homeki web interface.">
