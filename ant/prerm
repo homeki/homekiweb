@@ -1,0 +1,11 @@
+#/bin/bash
+
+set -e
+
+if [ "$1" = "remove" ] ; then
+	echo -n "deleting port redirection from TCP port 80 to TCP port 8080: "
+	iptables -t nat -D PREROUTING 1
+	echo "done"
+fi
+
+exit 0

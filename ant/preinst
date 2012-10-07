@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+if [ "$1" = "install" ] ; then
+	echo -n "adding redirection from TCP port 80 to TCP port 8080: "
+	iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+	echo "done"
+fi
+
+exit 0

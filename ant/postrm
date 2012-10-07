@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+if [ "$1" = "remove" ] ; then
+	echo "------------------- APT: RESTARTED HOMEKI -------------------" >> /opt/homeki/stdout.log
+	/etc/init.d/homekid restart
+	echo "removed homeki-web, restarting homeki."
+fi
+
+exit 0
