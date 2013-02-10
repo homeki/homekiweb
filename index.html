@@ -45,13 +45,26 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">Homeki</a>
-          <div class="nav-collapse">
-            <ul class="nav tabs">
-              <li><a href="#devices">Devices</a></li>
-              <li><a href="#about">About</a></li>
+
+            <ul class="nav nav-pills">
+              <li><a href="#">Home</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle"  data-toggle="dropdown" href="#">
+                    Devices
+                <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="nav-header">Manage Devices</li>
+                    <li><a href="#">Add New Device</a></li>
+                    <li class="nav-header">Triggers</li>
+                    <li><a href="#">Quick Triggers</a></li>
+                    <li><a href="#">Actions</a></li>
+                    <li><a href="#">Conditions</a></li>
+                </ul>
+              </li>
               <li><a href="#contact">Contact</a></li>
             </ul>
-          </div><!--/.nav-collapse -->
+
         </div>
       </div>
     </div>
@@ -71,44 +84,8 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="lib/js/sprintf-0.7-beta1.js"></script>
-    <script src="lib/js/jquery-1.8.0.js"></script>
-    <script src="lib/js/jquery-ui-1.8.23.custom.min.js"></script>
-    <script src="lib/js/homeki-api.js"></script>
-    <script src="lib/js/jquery.deviceToggler.js"></script>
-    
-    <!--<script src="../bootstrap-assets/js/jquery.js"></script> -->
-    <script src="../bootstrap-assets/js/bootstrap-transition.js"></script>
-    <script src="../bootstrap-assets/js/bootstrap-alert.js"></script>
-    <script src="../bootstrap-assets/js/bootstrap-modal.js"></script>
-    <script src="../bootstrap-assets/js/bootstrap-dropdown.js"></script>
-    <script src="../bootstrap-assets/js/bootstrap-scrollspy.js"></script>
-    <script src="../bootstrap-assets/js/bootstrap-tab.js"></script>
-    <script src="../bootstrap-assets/js/bootstrap-tooltip.js"></script>
-    <script src="../bootstrap-assets/js/bootstrap-popover.js"></script>
-    <script src="../bootstrap-assets/js/bootstrap-button.js"></script>
-    <script src="../bootstrap-assets/js/bootstrap-collapse.js"></script>
-    <script src="../bootstrap-assets/js/bootstrap-carousel.js"></script>
-    <script src="../bootstrap-assets/js/bootstrap-typeahead.js"></script>
+    <script data-main="lib/js/core.js" src="lib/js/require-jquery.js"></script>
     <script lang="javascript">
-
-    function toggleDeviceFunction(device){
-        var $btn = $(this);
-        if(!$btn.hasClass('status-loading')) {
-            $btn.addClass('status-loading');
-            toggleDevice($btn.data('id'), function(success, status){
-                if(success) {
-                    $btn.toggleClass('status-on' , status).removeClass('status-loading');
-                }
-                else {
-                    $btn.removeClass('status-loading').addClass('status-error');
-                    window.setInterval(function(){
-                        $btn.removeClass('status-error');
-                    }, 3000);
-                }
-            });
-        }
-    }
     function createDeviceListElements(devices){
         var $holder = $("<div/>");
 
@@ -118,18 +95,9 @@
         });
         return $holder.children();
     }
-    $(function(){
-        ready = 0;
-        $.ajax({
-            url : HOMEKI_URL + '/device/list',
-            cache : false,
-            dataType: 'json',
-            success : function(data){
-                $("#devices").append(createDeviceListElements(data))
-            },
-            error   : function(e) {  console.log(e); }
-        });
-    });
+    // Different javascript collections
+    // jQuery and some other standalone stuff
+
     </script>
   </body>
 </html>
