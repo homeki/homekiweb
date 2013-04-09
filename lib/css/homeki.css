@@ -23,3 +23,8 @@
 	display : inline-block;
 	width:75%;
 }
+
+.device-holder .description {
+	padding-bottom:19px;
+	width : 80%;
+}
