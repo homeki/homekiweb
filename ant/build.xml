@@ -1,12 +1,11 @@
 <project>
-	<property name="version" value="0.0.5" />
+	<property name="version" value="0.1.0" />
 
 	<path id="ant.classpath">
 		<fileset dir="." includes="*.jar" />
 	</path>
 
 	<taskdef name="deb" classname="com.googlecode.ant_deb_task.Deb" classpathref="ant.classpath" />
-	<taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="ant.classpath" />
 		
 	<target name="clean">
 		<delete dir="../build" />
@@ -19,20 +18,16 @@
 
 	<target name="dist">
 		<mkdir dir="../build/dist" />
-		<for list="i386,amd64,armhf" param="arch">
-			<sequential>
-				<deb todir="../build/dist" package="homeki-web" section="misc" depends="iptables, homeki" preinst="preinst" prerm="prerm" postrm="postrm" postinst="postinst" architecture="@{arch}">
-					<version upstream="${version}" />
-					<maintainer name="Homeki Development Team" email="contact@homeki.com" />
-					<description synopsis="Web root for Homeki web interface.">
-						Provides a web interface (GUI) for accessing Homeki. This package distributes the web root, but it is hosted by the Homeki process.
-					</description>
-					<tarfileset dir="../" prefix="/opt/homeki/www" filemode="755">
-						<exclude name="build/**" />
-						<exclude name="ant/**" />
-					</tarfileset>
-				</deb>
-			</sequential>
-		</for>
+		<deb todir="../build/dist" package="homeki-web" section="misc" depends="iptables, homeki" preinst="preinst" prerm="prerm" postrm="postrm" postinst="postinst" architecture="all">
+			<version upstream="${version}" />
+			<maintainer name="Homeki Development Team" email="contact@homeki.com" />
+			<description synopsis="Web root for Homeki web interface.">
+				Provides a web interface (GUI) for accessing Homeki. This package distributes the web root, but it is hosted by the Homeki process.
+			</description>
+			<tarfileset dir="../" prefix="/opt/homeki/www" filemode="755">
+				<exclude name="build/**" />
+				<exclude name="ant/**" />
+			</tarfileset>
+		</deb>
 	</target>
 </project>
