@@ -28,3 +28,7 @@
 	padding-bottom:19px;
 	width : 80%;
 }
+
+.device-holder .temperature {
+	font-size : 18px;
+}
