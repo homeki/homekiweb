@@ -1,9 +1,6 @@
 'use strict';
 
-angular.module('homekiwebApp', [
-  'ngResource',
-  'ngRoute'
-])
+angular.module('app', ['ngResource', 'ngRoute'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
