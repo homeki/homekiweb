@@ -18,7 +18,18 @@
     <!-- endbuild -->
   </head>
   <body ng-app="app">
-    <div class="container" ng-view></div>
+    <div class="container">
+      <div class="header" ng-controller="HeaderCtrl">
+        <ul class="nav nav-pills pull-right">
+          <li ng-class="{active: routeIs('/devices')}"><a ng-href="#/devices">Devices</a></li>
+          <li ng-class="{active: routeIs('/triggers')}"><a ng-href="#/triggers">Triggers</a></li>
+          <li ng-class="{active: routeIs('/configuration')}"><a ng-href="#/configuration">Configuration</a></li>
+        </ul>
+        <h3 class="text-muted">Homeki Web</h3>
+      </div>
+
+      <ng-view></ng-view>
+    </div>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -37,7 +48,10 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/device.js"></script>
+    <script src="scripts/controllers/trigger.js"></script>
+    <script src="scripts/controllers/configuration.js"></script>
+    <script src="scripts/controllers/header.js"></script>
     <!-- endbuild -->
 </body>
 </html>
