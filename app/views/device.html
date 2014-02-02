@@ -4,7 +4,7 @@
       <div class="panel-heading">
         <div class="pull-left" ng-bind="device.name"></div>
         <div class="pull-right">
-          <div class="clickable" ng-click="editDevice(device)">
+          <div class="clickable" ng-click="editDevice($index, device)">
             <span class="glyphicon glyphicon-pencil"></span>
           </div>
         </div>
