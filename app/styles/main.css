@@ -3,6 +3,14 @@ body {
   padding-bottom: 20px;
 }
 
+textarea {
+  resize: none;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
 .header,
 .footer {
   padding-left: 15px;

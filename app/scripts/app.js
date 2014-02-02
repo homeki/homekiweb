@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app', ['ngResource', 'ngRoute'])
+angular.module('app', ['ngResource', 'ngRoute', 'ui.bootstrap'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/devices', {

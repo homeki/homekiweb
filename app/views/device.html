@@ -1,31 +1,17 @@
 <div class="row content">
-  <div class="col-md-4">
+  <div class="col-md-4" ng-repeat="device in devices">
     <div class="panel panel-default">
       <div class="panel-heading">
-        Angular
+        <div class="pull-left" ng-bind="device.name"></div>
+        <div class="pull-right">
+          <div class="clickable" ng-click="editDevice(device)">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </div>
+        </div>
+        <div class="clearfix"></div>
       </div>
       <div class="panel-body">
-        AngularJS is a toolset for building the framework most suited to your application development.
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        Angular
-      </div>
-      <div class="panel-body">
-        AngularJS is a toolset for building the framework most suited to your application development.
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        Hejsan
-      </div>
-      <div class="panel-body">
-        Spectacular Test Runner for JavaScript.
+
       </div>
     </div>
   </div>
