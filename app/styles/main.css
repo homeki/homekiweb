@@ -7,6 +7,19 @@ textarea {
   resize: none;
 }
 
+.message-container {
+  position: fixed;
+  z-index: 5001;
+  top: 5%;
+  width: 100%;
+}
+
+.message {
+  width: 95%;
+  display: block;
+  margin: 0 auto;
+}
+
 .clickable {
   cursor: pointer;
 }
@@ -39,16 +52,11 @@ textarea {
   border-top: 1px solid #e5e5e5;
 }
 
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1200px;
-  }
-}
-
 .content {
   margin: 20px 0;
 }
 
+/* tablet */
 @media screen and (min-width: 768px) {
   .header,
   .content,
@@ -57,7 +65,18 @@ textarea {
     padding-right: 0;
   }
 
+  .message {
+    width: 50%;
+  }
+
   .header {
     margin-bottom: 30px;
+  }
+}
+
+/* desktop */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
   }
 }
