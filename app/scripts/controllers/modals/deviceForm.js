@@ -3,10 +3,15 @@
 angular.module('app')
   .controller('DeviceFormCtrl', function ($scope, $modalInstance, util, device) {
     $scope.formattedType = util.formatType(device.type);
-    $scope.device = device;
+    $scope.device = angular.copy(device);
 
-    $scope.ok = function () {
-      $modalInstance.close();
+    $scope.save = function () {
+      function onSuccess() {
+        angular.copy($scope.device, device);
+        $modalInstance.close();
+      }
+
+      $scope.device.$save(onSuccess);
     };
 
     $scope.cancel = function () {

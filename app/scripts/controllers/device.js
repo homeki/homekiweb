@@ -5,7 +5,7 @@ angular.module('app')
     $scope.devices = api.Device.query();
 
     $scope.editDevice = function (device) {
-      var modalInstance = $modal.open({
+      $modal.open({
         templateUrl: 'views/modals/deviceForm.html',
         controller: 'DeviceFormCtrl',
         resolve: {
@@ -13,10 +13,6 @@ angular.module('app')
             return device;
           }
         }
-      });
-
-      modalInstance.result.then(function () {
-        console.log('done');
       });
     };
   });

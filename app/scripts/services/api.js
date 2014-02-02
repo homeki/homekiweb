@@ -5,6 +5,6 @@ angular.module('app')
     var DEV_SERVER = 'http://localhost:5000';
 
     return {
-      Device: $resource(DEV_SERVER + '/api/device/list')
+      Device: $resource(DEV_SERVER + '/api/devices/:deviceId', { deviceId: '@deviceId'})
     };
   });
