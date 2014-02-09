@@ -1,0 +1,37 @@
+/* hkMessage */
+
+.message {
+  width: 95%;
+  display: block;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 1280px) {
+  .message {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .message {
+    width: 50%;
+  }
+}
+
+/* hkToggleSwitch */
+
+.btn-down {
+  background-color: #ebebeb;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+/* hkSlider */
+
+.progress .progress-bar {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
+}
