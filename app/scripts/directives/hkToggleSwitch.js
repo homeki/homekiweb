@@ -10,8 +10,8 @@ angular.module('app')
       link: function (scope, elem, attrs, ctrl) {
         var changeFn = $parse(attrs.toggleChange);
 
-        var onBtn = angular.element(elem.children()[0]);
-        var offBtn = angular.element(elem.children()[1]);
+        var offBtn = angular.element(elem.children()[0]);
+        var onBtn = angular.element(elem.children()[1]);
 
         ctrl.$render = function() {
           if (ctrl.$viewValue === 1) {
