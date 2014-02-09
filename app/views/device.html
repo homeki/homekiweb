@@ -11,7 +11,25 @@
         <div class="clearfix"></div>
       </div>
       <div class="panel-body">
-
+        <!-- switch -->
+        <div ng-show="device.type == 'switch'">
+          <hk-toggle-switch toggle-change="setChannel(device, 0)" ng-model="device.channelValues[0].lastValue"></hk-toggle-switch>
+        </div>
+        <!-- dimmer -->
+        <div ng-show="device.type == 'dimmer'">
+          <div class="pull-left fixedwidth">
+            <hk-toggle-switch toggle-change="setChannel(device, 0)" ng-model="device.channelValues[0].lastValue"></hk-toggle-switch>
+          </div>
+          <div class="top-padded">
+            <hk-slider slider-change="setChannel(device, 1)" ng-model="device.channelValues[1].lastValue"></hk-slider>
+          </div>
+        </div>
+        <!-- thermometer -->
+        <div ng-show="device.type == 'thermometer'">
+          <div class="thermometer">
+            {{ device.channelValues[0].lastValue }} °C
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -22,4 +22,4 @@ angular.module('app')
         scope.$on('hkError', setError);
       }
     };
-  })
+  });

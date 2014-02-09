@@ -14,12 +14,6 @@ textarea {
   width: 100%;
 }
 
-.message {
-  width: 95%;
-  display: block;
-  margin: 0 auto;
-}
-
 .clickable {
   cursor: pointer;
 }
@@ -56,6 +50,23 @@ textarea {
   margin: 20px 0;
 }
 
+.panel-body {
+  height: 70px;
+}
+
+.fixedwidth {
+  width: 100px;
+}
+
+.thermometer {
+  padding-top: 5px;
+  font-size: large;
+}
+
+.top-padded {
+  padding-top: 7px;
+}
+
 /* tablet */
 @media screen and (min-width: 768px) {
   .header,
@@ -65,26 +76,18 @@ textarea {
     padding-right: 0;
   }
 
-  .message {
-    width: 50%;
-  }
-
   .header {
     margin-bottom: 30px;
   }
 }
 
 /* desktop */
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
   .header,
   .content,
   .footer {
     padding-left: 0;
     padding-right: 0;
-  }
-
-  .message {
-    width: 50%;
   }
 
   .header {
