@@ -38,7 +38,9 @@ angular.module('app')
           bar.css('width', Math.round(ctrl.$viewValue / 2.55) + '%');
         };
 
-        elem.on('mousedown touchstart', function () {
+        elem.on('mousedown touchstart', function (e) {
+          e.stopPropagation();
+          e.preventDefault();
           $document.on('mouseup touchleave touchend', function (e) {
             var x = getX(e);
             var p = getPercentage(x);
