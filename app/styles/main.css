@@ -47,7 +47,7 @@ textarea {
 }
 
 .content {
-  margin: 20px 0;
+  margin: 5px 0;
 }
 
 .panel-body {
@@ -67,6 +67,18 @@ textarea {
   padding-top: 7px;
 }
 
+.bottom-margin {
+  margin-bottom: 15px;
+}
+
+.sub-menu {
+  margin: 5px 0;
+}
+
+.sub-menu .col-md-12 {
+  padding: 0 5px;
+}
+
 /* tablet */
 @media screen and (min-width: 768px) {
   .header,
@@ -76,24 +88,23 @@ textarea {
     padding-right: 0;
   }
 
-  .header {
-    margin-bottom: 30px;
+  .header .nav-stacked > li {
+    float: left;
+  }
+  .header .nav-stacked > li + li {
+    margin-top: 0;
+    margin-left: 2px;
+  }
+  .header h3 {
+    float: left;
+  }
+  .header ul {
+    float: right;
   }
 }
 
 /* desktop */
-@media screen and (min-width: 1280px) {
-  .header,
-  .content,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .header {
-    margin-bottom: 30px;
-  }
-
+@media screen and (min-width: 1200px) {
   .container {
     max-width: 1200px;
   }
