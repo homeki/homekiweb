@@ -1,13 +1,28 @@
 'use strict';
 
 angular.module('app')
-  .controller('DeviceCtrl', function ($scope, $modal, api) {
+  .controller('DeviceCtrl', function ($scope, $modal, api, util) {
     $scope.devices = api.Device.query();
 
     $scope.setChannel = function (device, channel) {
       var deviceChannel = new api.DeviceChannel();
       deviceChannel.value = device.channelValues[channel].lastValue;
       deviceChannel.$save({ deviceId: device.deviceId, channelId: channel });
+    };
+
+    $scope.addDevice = function () {
+      var modalInstance = $modal.open({
+        templateUrl: 'views/modals/deviceForm.html',
+        controller: 'DeviceFormCtrl',
+        resolve: {
+          device: function () { return; }
+        }
+      });
+
+      modalInstance.result.then(function (result) {
+        $scope.devices.push(result.device);
+        $scope.devices.sort(util.alphabeticalCompareFunc('name'));
+      });
     };
 
     $scope.editDevice = function (index, device) {
@@ -22,7 +37,7 @@ angular.module('app')
       });
 
       modalInstance.result.then(function (result) {
-        if (result.action === 'update') {
+        if (result.action === 'save') {
           angular.copy(result.device, device);
         } else {
           $scope.devices.splice(index, 1);

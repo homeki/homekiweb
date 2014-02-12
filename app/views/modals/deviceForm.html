@@ -1,9 +1,58 @@
 <div class="modal-header">
-  <h3>Edit {{ formattedType }}</h3>
+  <h3 ng-show="editMode">Edit {{ formattedType }}</h3>
+  <h3 ng-hide="editMode">Add device</h3>
 </div>
 
 <div class="modal-body">
-  <form role="form">
+  <form>
+    <!-- Only shown if new device -->
+    <div ng-hide="editMode">
+      <div class="form-group">
+        <label for="vendor">Vendor</label>
+        <select id="vendor" class="form-control" ng-model="device.vendor">
+          <option value="tellstick">Tellstick</option>
+        </select>
+      </div>
+
+      <!-- Tellstick specific form controls -->
+      <div ng-show="device.vendor = 'tellstick'">
+        <div class="form-group">
+          <label for="protocol">Protocol</label>
+          <select id="protocol" class="form-control" ng-model="device.protocol">
+            <option value="arctech">Arctech</option>
+          </select>
+        </div>
+        <div ng-show="device.protocol = 'arctech'">
+          <div class="form-group">
+            <label for="model">Model</label>
+            <select id="model" class="form-control" ng-model="device.model">
+              <option value="selflearning-switch">selflearning-switch</option>
+              <option value="selflearning-dimmer">selflearning-dimmer</option>
+              <option value="codeswitch">codeswitch</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="house">House</label>
+            <input type="text" ng-model="device.house" class="form-control" id="house" placeholder="House">
+          </div>
+          <div class="form-group">
+            <label for="unit">Unit</label>
+            <input type="text" ng-model="device.unit" class="form-control" id="unit" placeholder="Unit">
+          </div>
+        </div>
+      </div>
+
+      <!-- Common for all new devices -->
+      <div class="form-group">
+        <label for="type">Type</label>
+        <select id="type" class="form-control" ng-model="device.type">
+          <option value="switch">Switch</option>
+          <option value="dimmer">Dimmer</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Shown for all devices -->
     <div class="form-group">
       <label for="name">Name</label>
       <input type="text" ng-model="device.name" class="form-control" id="name" placeholder="Name">
@@ -16,7 +65,7 @@
 </div>
 
 <div class="modal-footer">
-  <button class="btn btn-danger pull-left" ng-click="delete()">Delete</button>
+  <button class="btn btn-danger pull-left" ng-click="delete()" ng-show="editMode">Delete</button>
   <button class="btn btn-primary" ng-click="save()">Save</button>
   <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
 </div>

@@ -1,13 +1,19 @@
 'use strict';
 
 angular.module('app')
-  .controller('DeviceFormCtrl', function ($scope, $modalInstance, util, device) {
-    $scope.formattedType = util.formatType(device.type);
-    $scope.device = device;
+  .controller('DeviceFormCtrl', function ($scope, $modalInstance, api, util, device) {
+    if (device) {
+      $scope.editMode = true;
+      $scope.formattedType = util.formatType(device.type);
+      $scope.device = device;
+    } else {
+      $scope.editMode = false;
+      $scope.device = new api.Device();
+    }
 
     $scope.save = function () {
       $scope.device.$save(function () {
-        $modalInstance.close({ action: 'update', device: device});
+        $modalInstance.close({ action: 'save', device: $scope.device});
       });
     };
 
