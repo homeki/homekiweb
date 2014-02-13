@@ -40,6 +40,11 @@ textarea {
   padding-right: 5px;
 }
 
+.col-md-12 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 .footer {
   padding-top: 19px;
   color: #777;

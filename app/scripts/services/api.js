@@ -5,7 +5,8 @@ angular.module('app')
     var DEV_SERVER = 'http://localhost:5000';
 
     return {
-      Device: $resource(DEV_SERVER + '/api/devices/:deviceId', { deviceId: '@deviceId'}),
-      DeviceChannel: $resource(DEV_SERVER + '/api/devices/:deviceId/channels/:channelId', { deviceId: '@deviceId', channelId: '@channelId' })
+      Device: $resource(DEV_SERVER + '/api/devices/:deviceId', { deviceId: '@deviceId' }),
+      DeviceChannel: $resource(DEV_SERVER + '/api/devices/:deviceId/channels/:channelId', { deviceId: '@deviceId', channelId: '@channelId' }),
+      Trigger: $resource(DEV_SERVER + '/api/triggers/:triggerId', { triggerId: '@triggerId' })
     };
   });
