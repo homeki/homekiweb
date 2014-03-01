@@ -9,6 +9,48 @@ angular.module('app')
           if (a[prop] > b[prop]) return 1;
           return 0;
         };
+      },
+      formatType: function (type) {
+        switch (type) {
+          case 'channelvalue':
+            return 'Device Channel Value';
+          case 'minute':
+            return 'Time/Date';
+          case 'specialvalue':
+            return 'Special Value';
+          default:
+            return type;
+        }
+      },
+      formatOperator: function (op) {
+        switch (op) {
+          case 'EQ':
+            return 'equal to';
+          case 'LT':
+            return 'lesser than';
+          case 'GT':
+            return 'greater than';
+          default:
+            return 'unknown';
+        }
+      },
+      formatTime: function(hour, minute) {
+        var result = '';
+        if (hour < 10) result = '0';
+        result += hour + ':';
+        if (minute < 10) result += '0';
+        result += minute;
+        return result;
+      },
+      formatSource: function(source) {
+        switch (source) {
+          case 'CONNECTED_CLIENTS':
+            return 'connected clients';
+          case 'SUNRISE_SUNSET':
+            return 'sunrise/sunset';
+          default:
+            return source;
+        }
       }
     };
   });

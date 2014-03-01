@@ -1,0 +1,110 @@
+<div class="modal-header">
+  <h3 ng-show="editMode">Edit condition</h3>
+  <h3 ng-hide="editMode">Add condition</h3>
+</div>
+
+<div class="modal-body">
+  <div class="form-group">
+    <label for="type">Type</label>
+    <select id="type" class="form-control" ng-model="condition.type" ng-disabled="editMode">
+      <option value="channelvalue" ng-bind="formatType('channelvalue')"></option>
+      <option value="minute" ng-bind="formatType('minute')"></option>
+      <option value="specialvalue" ng-bind="formatType('specialvalue')"></option>
+    </select>
+  </div>
+
+  <!-- channel value condition -->
+  <div ng-show="condition.type == 'channelvalue'">
+    <div class="form-group">
+      <label for="device">Device</label>
+      <select id="device" class="form-control" ng-model="condition.deviceId">
+        <option ng-repeat="device in devices" value="{{ device.deviceId }}" ng-bind="device.name"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="channel">Channel</label>
+      <input type="number" ng-model="condition.channel" class="form-control" id="channel" placeholder="Channel">
+    </div>
+    <div class="form-group">
+      <label for="operator">Operator</label>
+      <select id="operator" class="form-control" ng-model="condition.operator">
+        <option value="EQ" ng-bind="formatOperator('EQ')"></option>
+        <option value="GT" ng-bind="formatOperator('LT')"></option>
+        <option value="LT" ng-bind="formatOperator('GT')"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="value">Value</label>
+      <input type="number" ng-model="condition.value" class="form-control" id="value" placeholder="Value">
+    </div>
+  </div>
+
+  <!-- minute condition -->
+  <div ng-show="condition.type == 'minute'">
+    <div class="form-group">
+      <label for="day">Day(s)</label>
+      <input type="text" ng-model="condition.day" class="form-control" id="day" placeholder="Day(s)">
+      <p class="help-block">Enter day of month, separate with comma (ex: 1,4,24). Use * for all days.</p>
+    </div>
+    <div class="form-group">
+      <label for="weekday">Weekday(s)</label>
+      <input type="text" ng-model="condition.weekday" class="form-control" id="weekday" placeholder="Weekday(s)">
+      <p class="help-block">1 = monday, 2 = tuesday, and so on, separate with comma (ex: 1,4,5). Use * for all weekdays.</p>
+    </div>
+    <div class="form-group">
+      <label>Time</label>
+      <div class="form-inline">
+        <label for="hour" class="sr-only">Hour</label>
+        <input type="number" ng-model="condition.hour" class="form-control" id="hour" placeholder="Hour"> :
+        <label for="minute" class="sr-only">Minute</label>
+        <input type="number" ng-model="condition.minute" class="form-control" id="minute" placeholder="Minute">
+      </div>
+    </div>
+  </div>
+
+  <!-- special value condition -->
+  <!--
+    public String source;
+		public Integer value;
+		public String operator;
+		public Boolean customSource;
+   -->
+  <div ng-show="condition.type == 'specialvalue'">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="condition.customSource" id="customSource"> Use custom source
+      </label>
+    </div>
+    <div class="form-group" ng-show="condition.customSource">
+      <label for="sourceText">Custom source</label>
+      <input type="text" ng-model="condition.source" class="form-control" id="sourceText" placeholder="Custom source">
+      <p class="help-block">Custom source events can be triggered by third-party apps using the Homeki REST API.</p>
+    </div>
+    <div class="form-group" ng-hide="condition.customSource">
+      <label for="sourceSelect">Source</label>
+      <select id="sourceSelect" class="form-control" ng-model="condition.source">
+        <option value="SUNRISE_SUNSET" ng-bind="formatSource('SUNRISE_SUNSET')"></option>
+        <option value="CONNECTED_CLIENTS" ng-bind="formatSource('CONNECTED_CLIENTS')"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="specialOperator">Operator</label>
+      <select id="specialOperator" class="form-control" ng-model="condition.operator">
+        <option value="EQ" ng-bind="formatOperator('EQ')"></option>
+        <option value="GT" ng-bind="formatOperator('LT')"></option>
+        <option value="LT" ng-bind="formatOperator('GT')"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="specialValue">Value</label>
+      <input type="text" ng-model="condition.value" class="form-control" id="specialValue" placeholder="Value">
+      <p class="help-block" ng-show="condition.source == 'SUNRISE_SUNSET'">Use 1 for sunrise, 0 for sunset.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-danger pull-left" ng-click="delete()" ng-show="editMode">Delete</button>
+  <button class="btn btn-primary" ng-click="save()">Save</button>
+  <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

@@ -11,6 +11,10 @@ angular.module('app', ['ngResource', 'ngRoute', 'ui.bootstrap'])
         templateUrl: 'views/trigger.html',
         controller: 'TriggerCtrl'
       })
+      .when('/triggers/:triggerId', {
+        templateUrl: 'views/triggerDetail.html',
+        controller: 'TriggerDetailCtrl'
+      })
       .when('/configuration', {
         templateUrl: 'views/configuration.html',
         controller: 'ConfigurationCtrl'

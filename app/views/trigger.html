@@ -10,7 +10,9 @@
   <div class="col-md-12">
     <div class="panel panel-default" ng-repeat="trigger in triggers">
       <div class="panel-heading">
-        <div class="pull-left" ng-bind="trigger.name"></div>
+        <div class="pull-left">
+          <a href="#/triggers/{{ trigger.triggerId }}/" ng-bind="trigger.name"></a>
+        </div>
         <div class="pull-right">
           <div class="clickable" ng-click="editTrigger($index, trigger)">
             <span class="glyphicon glyphicon-pencil"></span>
