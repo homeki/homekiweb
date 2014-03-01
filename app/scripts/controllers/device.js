@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('app')
-  .controller('DeviceCtrl', function ($scope, $modal, api, util) {
-    $scope.devices = api.Device.query();
+  .controller('DeviceCtrl', function ($scope, $modal, api, cache, util) {
+    $scope.devices = cache.getDevices();
 
     $scope.setChannel = function (device, channel) {
       var deviceChannel = new api.DeviceChannel();
@@ -14,9 +14,7 @@ angular.module('app')
       var modalInstance = $modal.open({
         templateUrl: 'views/modals/deviceForm.html',
         controller: 'DeviceFormCtrl',
-        resolve: {
-          device: function () { return; }
-        }
+        resolve: { device: function () {} }
       });
 
       modalInstance.result.then(function (result) {
@@ -30,9 +28,7 @@ angular.module('app')
         templateUrl: 'views/modals/deviceForm.html',
         controller: 'DeviceFormCtrl',
         resolve: {
-          device: function () {
-            return angular.copy(device);
-          }
+          device: function () { return angular.copy(device); }
         }
       });
 
