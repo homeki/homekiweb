@@ -35,12 +35,7 @@ textarea {
   padding-bottom: 19px;
 }
 
-.col-md-4 {
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.col-md-12 {
+.col-md-4, .col-md-6, .col-md-12 {
   padding-left: 5px;
   padding-right: 5px;
 }

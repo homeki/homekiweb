@@ -4,64 +4,62 @@
 </div>
 
 <div class="modal-body">
-  <form>
-    <!-- Only shown if new device -->
-    <div ng-hide="editMode">
+  <!-- Only shown if new device -->
+  <div ng-hide="editMode">
+    <div class="form-group">
+      <label for="vendor">Vendor</label>
+      <select id="vendor" class="form-control" ng-model="device.vendor">
+        <option value="tellstick">Tellstick</option>
+      </select>
+    </div>
+
+    <!-- Tellstick specific form controls -->
+    <div ng-show="device.vendor = 'tellstick'">
       <div class="form-group">
-        <label for="vendor">Vendor</label>
-        <select id="vendor" class="form-control" ng-model="device.vendor">
-          <option value="tellstick">Tellstick</option>
+        <label for="protocol">Protocol</label>
+        <select id="protocol" class="form-control" ng-model="device.protocol">
+          <option value="arctech">Arctech</option>
         </select>
       </div>
-
-      <!-- Tellstick specific form controls -->
-      <div ng-show="device.vendor = 'tellstick'">
+      <div ng-show="device.protocol = 'arctech'">
         <div class="form-group">
-          <label for="protocol">Protocol</label>
-          <select id="protocol" class="form-control" ng-model="device.protocol">
-            <option value="arctech">Arctech</option>
+          <label for="model">Model</label>
+          <select id="model" class="form-control" ng-model="device.model">
+            <option value="selflearning-switch">selflearning-switch</option>
+            <option value="selflearning-dimmer">selflearning-dimmer</option>
+            <option value="codeswitch">codeswitch</option>
           </select>
         </div>
-        <div ng-show="device.protocol = 'arctech'">
-          <div class="form-group">
-            <label for="model">Model</label>
-            <select id="model" class="form-control" ng-model="device.model">
-              <option value="selflearning-switch">selflearning-switch</option>
-              <option value="selflearning-dimmer">selflearning-dimmer</option>
-              <option value="codeswitch">codeswitch</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="house">House</label>
-            <input type="text" ng-model="device.house" class="form-control" id="house" placeholder="House">
-          </div>
-          <div class="form-group">
-            <label for="unit">Unit</label>
-            <input type="text" ng-model="device.unit" class="form-control" id="unit" placeholder="Unit">
-          </div>
+        <div class="form-group">
+          <label for="house">House</label>
+          <input type="text" ng-model="device.house" class="form-control" id="house" placeholder="House">
+        </div>
+        <div class="form-group">
+          <label for="unit">Unit</label>
+          <input type="text" ng-model="device.unit" class="form-control" id="unit" placeholder="Unit">
         </div>
       </div>
-
-      <!-- Common for all new devices -->
-      <div class="form-group">
-        <label for="type">Type</label>
-        <select id="type" class="form-control" ng-model="device.type">
-          <option value="switch">Switch</option>
-          <option value="dimmer">Dimmer</option>
-        </select>
-      </div>
     </div>
 
-    <!-- Shown for all devices -->
+    <!-- Common for all new devices -->
     <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" ng-model="device.name" class="form-control" id="name" placeholder="Name">
+      <label for="type">Type</label>
+      <select id="type" class="form-control" ng-model="device.type">
+        <option value="switch">Switch</option>
+        <option value="dimmer">Dimmer</option>
+      </select>
     </div>
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea id="description" ng-model="device.description" placeholder="Description" class="form-control" rows="3"></textarea>
-    </div>
-  </form>
+  </div>
+
+  <!-- Shown for all devices -->
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" ng-model="device.name" class="form-control" id="name" placeholder="Name">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea id="description" ng-model="device.description" placeholder="Description" class="form-control" rows="3"></textarea>
+  </div>
 </div>
 
 <div class="modal-footer">
