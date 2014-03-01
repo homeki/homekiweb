@@ -4,8 +4,7 @@ angular.module('app')
   .factory('cache', function (api) {
     var devices = api.Device.query();
     var triggers = api.Trigger.query();
-    var actionGroups = [];
-    //var actionGroups = api.ActionGroup.query();
+    var actionGroups = api.ActionGroup.query();
 
     return {
       getDevices: function () {
@@ -24,7 +23,10 @@ angular.module('app')
         return actionGroups;
       },
       getActionGroupName: function (actionGroupId) {
-        return 'not implemented';
+        for (var i = 0; i < actionGroups.length; i++) {
+          if (actionGroups[i].actionGroupId === actionGroupId) return actionGroups[i].name;
+        }
+        return 'actionGroup' + actionGroupId;
       }
     };
   });

@@ -15,6 +15,14 @@ angular.module('app', ['ngResource', 'ngRoute', 'ui.bootstrap'])
         templateUrl: 'views/triggerDetail.html',
         controller: 'TriggerDetailCtrl'
       })
+      .when('/actiongroups', {
+        templateUrl: 'views/actionGroup.html',
+        controller: 'ActionGroupCtrl'
+      })
+      .when('/actiongroups/:actionGroupId', {
+        templateUrl: 'views/actionGroupDetail.html',
+        controller: 'ActionGroupDetailCtrl'
+      })
       .when('/configuration', {
         templateUrl: 'views/configuration.html',
         controller: 'ConfigurationCtrl'

@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('app')
-  .factory('util', function () {
+  .factory('util', function ($sce, cache) {
     return {
       alphabeticalCompareFunc: function (prop) {
         return function (a, b) {
-          if (a[prop] < b[prop]) return -1;
-          if (a[prop] > b[prop]) return 1;
+          var aval = a[prop].toLowerCase();
+          var bval = b[prop].toLowerCase();
+          if (aval < bval) return -1;
+          if (aval > bval) return 1;
           return 0;
         };
       },
@@ -33,6 +35,16 @@ angular.module('app')
           default:
             return type;
         }
+      },
+      formatActionDescription: function (action) {
+        switch (action.type) {
+          case 'changechannelvalue':
+            return $sce.trustAsHtml('set <b>channel ' + action.channel + '</b> on <b>' + cache.getDeviceName(action.deviceId) + '</b> to <b>' + action.value + '</b>');
+          case 'triggeractiongroup':
+            return $sce.trustAsHtml('trigger <b>' + cache.getActionGroupName(action.actionGroupId) + '</b>');
+          case 'sendmail':
+            return $sce.trustAsHtml('send e-mail with subject <b>' + action.subject + '</b> to <b>' + action.recipients + '</b>');
+        };
       },
       formatOperator: function (op) {
         switch (op) {

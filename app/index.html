@@ -25,6 +25,7 @@
         <ul class="nav nav-pills nav-stacked bottom-margin">
           <li ng-class="{active: routeIs('/devices')}"><a ng-href="#/devices">Devices</a></li>
           <li ng-class="{active: routeIs('/triggers')}"><a ng-href="#/triggers">Triggers</a></li>
+          <li ng-class="{active: routeIs('/actiongroups')}"><a ng-href="#/actiongroups">Action Groups</a></li>
           <li ng-class="{active: routeIs('/configuration')}"><a ng-href="#/configuration">Configuration</a></li>
         </ul>
         <div class="clearfix"></div>
@@ -56,11 +57,14 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/configuration.js"></script>
+    <script src="scripts/controllers/actionGroup.js"></script>
+    <script src="scripts/controllers/actionGroupDetail.js"></script>
     <script src="scripts/controllers/device.js"></script>
     <script src="scripts/controllers/header.js"></script>
     <script src="scripts/controllers/trigger.js"></script>
     <script src="scripts/controllers/triggerDetail.js"></script>
     <script src="scripts/controllers/modals/actionForm.js"></script>
+    <script src="scripts/controllers/modals/actionGroupForm.js"></script>
     <script src="scripts/controllers/modals/conditionForm.js"></script>
     <script src="scripts/controllers/modals/deviceForm.js"></script>
     <script src="scripts/controllers/modals/triggerForm.js"></script>

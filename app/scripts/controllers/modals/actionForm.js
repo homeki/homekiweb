@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .controller('ActionFormCtrl', function ($scope, $modalInstance, api, cache, util, triggerId, action) {
+  .controller('ActionFormCtrl', function ($scope, $modalInstance, api, cache, util, triggerId, actionGroupId, action) {
     $scope.devices = cache.getDevices();
     $scope.actionGroups = cache.getActionGroups();
     $scope.formatType = util.formatActionType;
@@ -11,17 +11,17 @@ angular.module('app')
       $scope.action = action;
     } else {
       $scope.editMode = false;
-      $scope.action = new api.TriggerAction();
+      $scope.action = triggerId ? new api.TriggerAction() : new api.ActionGroupAction();
     }
 
     $scope.save = function () {
-      $scope.action.$save({ triggerId: triggerId }, function () {
+      $scope.action.$save({ triggerId: triggerId, actionGroupId: actionGroupId }, function () {
         $modalInstance.close({ type: 'save', action: $scope.action });
       });
     };
 
     $scope.delete = function () {
-      $scope.action.$delete({ triggerId: triggerId }, function () {
+      $scope.action.$delete({ triggerId: triggerId, actionGroupId: actionGroupId }, function () {
         $modalInstance.close({ type: 'delete' });
       });
     };

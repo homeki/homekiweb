@@ -6,6 +6,7 @@ angular.module('app')
     $scope.actions = api.TriggerAction.query({ triggerId: $routeParams.triggerId });
     $scope.formatConditionType = util.formatConditionType;
     $scope.formatActionType = util.formatActionType;
+    $scope.formatActionDescription = util.formatActionDescription;
 
     $scope.formatConditionDescription = function (condition) {
       switch (condition.type) {
@@ -15,17 +16,6 @@ angular.module('app')
           return $sce.trustAsHtml('at <b>' + util.formatTime(condition.hour, condition.minute) + '</b> on day(s) <b>' + condition.day + '</b> and weekdays <b>' + condition.weekday + '</b>');
         case 'specialvalue':
           return $sce.trustAsHtml('when <b>' + util.formatSource(condition.source) + '</b> is <b>' + util.formatOperator(condition.operator) + ' ' + condition.value + '</b>');
-      }
-    };
-
-    $scope.formatActionDescription = function (action) {
-      switch (action.type) {
-        case 'changechannelvalue':
-          return $sce.trustAsHtml('set <b>channel ' + action.channel + '</b> on <b>' + cache.getDeviceName(action.deviceId) + '</b> to <b>' + action.value + '</b>');
-        case 'triggeractiongroup':
-          return $sce.trustAsHtml('trigger <b>' + cache.getActionGroupName(action.actionGroupId) + '</b>');
-        case 'sendmail':
-          return $sce.trustAsHtml('send e-mail with subject <b>' + action.subject + '</b> to <b>' + action.recipients + '</b>');
       }
     };
 
@@ -49,6 +39,7 @@ angular.module('app')
         templateUrl: 'views/modals/actionForm.html',
         controller: 'ActionFormCtrl',
         resolve: {
+          actionGroupId: function () {},
           triggerId: function () { return $routeParams.triggerId; },
           action: function () {}
         }
@@ -83,6 +74,7 @@ angular.module('app')
         templateUrl: 'views/modals/actionForm.html',
         controller: 'ActionFormCtrl',
         resolve: {
+          actionGroupId: function () {},
           triggerId: function () { return $routeParams.triggerId; },
           action: function () { return angular.copy(action); }
         }
