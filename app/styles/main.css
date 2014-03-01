@@ -18,6 +18,10 @@ textarea {
   cursor: pointer;
 }
 
+.clickable-panel .panel-heading {
+  cursor: pointer;
+}
+
 .header,
 .footer {
   padding-left: 15px;
@@ -50,7 +54,7 @@ textarea {
   margin: 5px 0;
 }
 
-.panel-body {
+.fixedheight {
   height: 70px;
 }
 

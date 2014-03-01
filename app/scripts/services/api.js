@@ -11,6 +11,7 @@ angular.module('app')
       TriggerCondition: $resource(DEV_SERVER + '/api/triggers/:triggerId/conditions/:conditionId', { triggerId: '@triggerId', conditionId: '@conditionId' }),
       TriggerAction: $resource(DEV_SERVER + '/api/triggers/:triggerId/actions/:actionId', { triggerId: '@triggerId', actionId: '@actionId' }),
       ActionGroup: $resource(DEV_SERVER + '/api/actiongroups/:actionGroupId', { actionGroupId: '@actionGroupId' }),
-      ActionGroupAction: $resource(DEV_SERVER + '/api/actiongroups/:actionGroupId/actions/:actionId', { actionGroupId: '@actionGroupId', actionId: '@actionId'})
+      ActionGroupAction: $resource(DEV_SERVER + '/api/actiongroups/:actionGroupId/actions/:actionId', { actionGroupId: '@actionGroupId', actionId: '@actionId'}),
+      Server: $resource(DEV_SERVER + '/api/server')
     };
   });

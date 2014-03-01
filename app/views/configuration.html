@@ -1,0 +1,63 @@
+<div class="row content">
+  <accordion>
+    <accordion-group heading="Information" class="clickable-panel" is-open="true">
+      <dl>
+        <dt>Homeki Server Version</dt>
+        <dd ng-bind="server.version"></dd>
+        <dt>Server Time</dt>
+        <dd ng-bind="server.time"></dd>
+        <dt>Server Uptime</dt>
+        <dd ng-bind="formatUptime(server.uptimeMs)"></dd>
+      </dl>
+    </accordion-group>
+    <accordion-group heading="General" class="clickable-panel">
+      <div class="form-group">
+        <label for="name">Server Name</label>
+        <input type="text" ng-model="server.name" class="form-control" id="name" placeholder="Server Name">
+      </div>
+    </accordion-group>
+    <accordion-group heading="Server Location" class="clickable-panel">
+      <div class="form-group">
+        <label for="longitude">Longitude</label>
+        <input type="text" ng-model="server.locationLongitude" class="form-control" id="longitude" placeholder="Longitude">
+      </div>
+      <div class="form-group">
+        <label for="latitude">Latitude</label>
+        <input type="text" ng-model="server.locationLatitude" class="form-control" id="latitude" placeholder="Latitude">
+      </div>
+    </accordion-group>
+    <accordion-group heading="E-mail/SMTP" class="clickable-panel">
+      <div class="form-group">
+        <label for="smtpHost">SMTP Host</label>
+        <input type="text" ng-model="server.smtpHost" class="form-control" id="smtpHost" placeholder="SMTP Host">
+      </div>
+      <div class="form-group">
+        <label for="smtpPort">SMTP Port</label>
+        <input type="text" ng-model="server.smtpPort" class="form-control" id="smtpPort" placeholder="SMTP Port">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="smtpTls" ng-model="server.smtpTls"> TLS
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="smtpAuth" ng-model="server.smtpAuth"> Auth
+        </label>
+      </div>
+      <div ng-show="server.smtpAuth">
+        <div class="form-group">
+          <label for="smtpPort">SMTP User</label>
+          <input type="text" ng-model="server.smtpUser" class="form-control" id="smtpUser" placeholder="SMTP User">
+        </div>
+        <div class="form-group">
+          <label for="smtpPort">SMTP Password</label>
+          <input type="text" ng-model="server.smtpPassword" class="form-control" id="smtpPassword" placeholder="SMTP Password">
+        </div>
+      </div>
+    </accordion-group>
+  </accordion>
+
+  <button class="btn btn-primary" ng-click="save()">Save</button>
+  <span class="text-muted" ng-show="saved">Changes successfully saved.</span>
+</div>
