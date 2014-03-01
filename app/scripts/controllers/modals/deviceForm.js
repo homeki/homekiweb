@@ -12,13 +12,13 @@ angular.module('app')
 
     $scope.save = function () {
       $scope.device.$save(function () {
-        $modalInstance.close({ action: 'save', device: $scope.device});
+        $modalInstance.close({ type: 'save', device: $scope.device});
       });
     };
 
     $scope.delete = function () {
       $scope.device.$delete(function () {
-        $modalInstance.close({ action: 'delete' });
+        $modalInstance.close({ type: 'delete' });
       });
     };
 

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('app')
-  .controller('TriggerCtrl', function ($scope, $modal, api, util) {
-    $scope.triggers = api.Trigger.query();
+  .controller('TriggerCtrl', function ($scope, $modal, cache, util) {
+    $scope.triggers = cache.getTriggers();
 
     $scope.addTrigger = function () {
       var modalInstance = $modal.open({
@@ -29,7 +29,7 @@ angular.module('app')
       });
 
       modalInstance.result.then(function (result) {
-        if (result.action === 'save') {
+        if (result.type === 'save') {
           angular.copy(result.trigger, trigger);
         } else {
           $scope.triggers.splice(index, 1);

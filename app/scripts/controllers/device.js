@@ -33,7 +33,7 @@ angular.module('app')
       });
 
       modalInstance.result.then(function (result) {
-        if (result.action === 'save') {
+        if (result.type === 'save') {
           angular.copy(result.device, device);
         } else {
           $scope.devices.splice(index, 1);

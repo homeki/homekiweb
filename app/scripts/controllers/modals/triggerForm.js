@@ -12,13 +12,13 @@ angular.module('app')
 
     $scope.save = function () {
       $scope.trigger.$save(function () {
-        $modalInstance.close({ action: 'save', trigger: $scope.trigger });
+        $modalInstance.close({ type: 'save', trigger: $scope.trigger });
       });
     };
 
     $scope.delete = function () {
       $scope.trigger.$delete(function () {
-        $modalInstance.close({ action: 'delete' });
+        $modalInstance.close({ type: 'delete' });
       });
     };
 

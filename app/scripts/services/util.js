@@ -10,7 +10,7 @@ angular.module('app')
           return 0;
         };
       },
-      formatType: function (type) {
+      formatConditionType: function (type) {
         switch (type) {
           case 'channelvalue':
             return 'Device Channel Value';
@@ -18,6 +18,18 @@ angular.module('app')
             return 'Time/Date';
           case 'specialvalue':
             return 'Special Value';
+          default:
+            return type;
+        }
+      },
+      formatActionType: function (type) {
+        switch (type) {
+          case 'changechannelvalue':
+            return 'Change Channel Value';
+          case 'triggeractiongroup':
+            return 'Trigger Action Group';
+          case 'sendmail':
+            return 'Send E-mail'
           default:
             return type;
         }

@@ -3,7 +3,7 @@
 angular.module('app')
   .controller('ConditionFormCtrl', function ($scope, $modalInstance, api, cache, util, triggerId, condition) {
     $scope.devices = cache.getDevices();
-    $scope.formatType = util.formatType;
+    $scope.formatType = util.formatConditionType;
     $scope.formatOperator = util.formatOperator;
     $scope.formatSource = util.formatSource;
 
@@ -18,13 +18,13 @@ angular.module('app')
     $scope.save = function () {
       $scope.condition.$save({ triggerId: triggerId }, function (updatedCondition) {
         $scope.condition.customSource = updatedCondition.customSource; // should be automatically updated but is not (?)
-        $modalInstance.close({ action: 'save', condition: $scope.condition });
+        $modalInstance.close({ type: 'save', condition: $scope.condition });
       });
-  };
+    };
 
     $scope.delete = function () {
       $scope.condition.$delete({ triggerId: triggerId }, function () {
-        $modalInstance.close({ action: 'delete' });
+        $modalInstance.close({ type: 'delete' });
       });
     };
 
