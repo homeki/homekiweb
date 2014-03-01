@@ -16,7 +16,8 @@ angular.module('app')
     }
 
     $scope.save = function () {
-      $scope.condition.$save({ triggerId: triggerId }, function () {
+      $scope.condition.$save({ triggerId: triggerId }, function (updatedCondition) {
+        $scope.condition.customSource = updatedCondition.customSource; // should be automatically updated but is not (?)
         $modalInstance.close({ action: 'save', condition: $scope.condition });
       });
   };
