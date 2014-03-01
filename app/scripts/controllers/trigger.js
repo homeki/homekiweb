@@ -9,7 +9,7 @@ angular.module('app')
         templateUrl: 'views/modals/triggerForm.html',
         controller: 'TriggerFormCtrl',
         resolve: {
-          trigger: function () { return; }
+          trigger: function () {}
         }
       });
 
@@ -24,9 +24,7 @@ angular.module('app')
         templateUrl: 'views/modals/triggerForm.html',
         controller: 'TriggerFormCtrl',
         resolve: {
-          trigger: function () {
-            return angular.copy(trigger);
-          }
+          trigger: function () { return angular.copy(trigger); }
         }
       });
 

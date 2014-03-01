@@ -12,7 +12,7 @@ angular.module('app')
 
     $scope.save = function () {
       $scope.trigger.$save(function () {
-        $modalInstance.close({ action: 'save', trigger: $scope.trigger});
+        $modalInstance.close({ action: 'save', trigger: $scope.trigger });
       });
     };
 
