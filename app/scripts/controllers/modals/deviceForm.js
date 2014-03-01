@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('app')
-  .controller('DeviceFormCtrl', function ($scope, $modalInstance, api, util, device) {
+  .controller('DeviceFormCtrl', function ($scope, $modalInstance, api, device) {
     if (device) {
       $scope.editMode = true;
-      $scope.formattedType = util.formatType(device.type);
       $scope.device = device;
     } else {
       $scope.editMode = false;
