@@ -24,10 +24,7 @@
 			<description synopsis="Web root for Homeki web interface.">
 				Provides a web interface (GUI) for accessing Homeki. This package distributes the web root, but it is hosted by the Homeki process.
 			</description>
-			<tarfileset dir="../" prefix="/opt/homeki/www" filemode="755">
-				<exclude name="build/**" />
-				<exclude name="ant/**" />
-			</tarfileset>
+			<tarfileset dir="../dist" prefix="/opt/homeki/www" filemode="755" />
 		</deb>
 	</target>
 </project>
