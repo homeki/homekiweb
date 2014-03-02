@@ -6,3 +6,4 @@ app/bower_components
 build
 .idea
 *.iml
+.DS_Store
