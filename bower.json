@@ -1,6 +1,6 @@
 {
   "name": "homekiweb",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "dependencies": {
     "angular": "1.2.12",
     "json3": "~3.2.6",
