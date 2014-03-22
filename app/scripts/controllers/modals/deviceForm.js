@@ -25,4 +25,8 @@ angular.module('app')
     $scope.cancel = function () {
       $modalInstance.dismiss();
     };
+
+    $scope.tellstickLearn = function () {
+      $scope.device.$tellstickLearn();
+    };
   });
