@@ -7,13 +7,6 @@ textarea {
   resize: none;
 }
 
-.message-container {
-  position: fixed;
-  z-index: 5001;
-  top: 5%;
-  width: 100%;
-}
-
 .clickable {
   cursor: pointer;
 }
