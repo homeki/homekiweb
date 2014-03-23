@@ -60,13 +60,16 @@
     <label for="description">Description</label>
     <textarea id="description" ng-model="device.description" placeholder="Description" class="form-control" rows="3"></textarea>
   </div>
+
+  <!-- Shown only for existing tellstick devices -->
+  <div ng-show="device.vendor == 'tellstick' && editMode">
+    <button class="btn btn-info" ng-click="tellstickLearn()">Send Tellstick Learn Signal</button>
+    <span class="text-muted" ng-show="sent">Sent OK.</span>
+  </div>
 </div>
 
 <div class="modal-footer">
-  <div class="pull-left">
-    <button class="btn btn-danger" ng-click="delete()" ng-show="editMode">Delete</button>
-    <button class="btn btn-info" ng-click="tellstickLearn()" ng-show="device.vendor == 'tellstick' && editMode">TellStick Learn</button>
-  </div>
+  <button class="btn btn-danger pull-left" ng-click="delete()" ng-show="editMode">Delete</button>
   <button class="btn btn-primary" ng-click="save()">Save</button>
   <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
 </div>

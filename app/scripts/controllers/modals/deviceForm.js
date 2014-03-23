@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .controller('DeviceFormCtrl', function ($scope, $modalInstance, api, device) {
+  .controller('DeviceFormCtrl', function ($scope, $timeout, $modalInstance, api, device) {
     if (device) {
       $scope.editMode = true;
       $scope.device = device;
@@ -27,6 +27,11 @@ angular.module('app')
     };
 
     $scope.tellstickLearn = function () {
-      $scope.device.$tellstickLearn();
+      $scope.device.$tellstickLearn(function () {
+        $scope.sent = true;
+        $timeout(function () {
+          $scope.sent = false;
+        }, 2000);
+      });
     };
   });
