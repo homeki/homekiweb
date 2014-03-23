@@ -5,7 +5,7 @@ angular.module('app')
     return {
       restrict: 'E',
       replace: true,
-      template: '<div class="spinner-container"><div class="spinner" ng-show="show"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div></div>',
+      template: '<div class="spinner-container" ng-show="show"><div class="spinner-frame"><div class="spinner"></div>Loading ...</div></div>',
       scope: true,
       link: function (scope) {
         scope.$on('stillAwaitingResponse', function () {
