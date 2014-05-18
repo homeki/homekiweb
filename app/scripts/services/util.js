@@ -31,7 +31,7 @@ angular.module('app')
           case 'triggeractiongroup':
             return 'Trigger Action Group';
           case 'sendmail':
-            return 'Send E-mail'
+            return 'Send E-mail';
           default:
             return type;
         }
@@ -39,19 +39,19 @@ angular.module('app')
       formatActionDescription: function (action) {
         switch (action.type) {
           case 'changechannelvalue':
-            return $sce.trustAsHtml('set <b>channel ' + action.channel + '</b> on <b>' + cache.getDeviceName(action.deviceId) + '</b> to <b>' + action.value + '</b>');
+            return $sce.trustAsHtml('set <b>channel ' + cache.getChannelName(action.deviceId, action.channel) + '</b> on <b>' + cache.getDeviceName(action.deviceId) + '</b> to <b>' + action.value + '</b>');
           case 'triggeractiongroup':
             return $sce.trustAsHtml('trigger <b>' + cache.getActionGroupName(action.actionGroupId) + '</b>');
           case 'sendmail':
             return $sce.trustAsHtml('send e-mail with subject <b>' + action.subject + '</b> to <b>' + action.recipients + '</b>');
-        };
+        }
       },
       formatOperator: function (op) {
         switch (op) {
           case 'EQ':
             return 'equal to';
           case 'LT':
-            return 'lesser than';
+            return 'less than';
           case 'GT':
             return 'greater than';
           default:

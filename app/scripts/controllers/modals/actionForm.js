@@ -5,6 +5,7 @@ angular.module('app')
     $scope.devices = cache.getDevices();
     $scope.actionGroups = cache.getActionGroups();
     $scope.formatType = util.formatActionType;
+    $scope.getChannels = cache.getChannels;
 
     if (action) {
       $scope.editMode = true;

@@ -4,10 +4,10 @@ angular.module('app')
   .controller('DeviceCtrl', function ($scope, $modal, api, cache, util) {
     $scope.devices = cache.getDevices();
 
-    $scope.setChannel = function (device, channel) {
+    $scope.setChannel = function (device, channelInfo) {
       var deviceChannel = new api.DeviceChannel();
-      deviceChannel.value = device.channelValues[channel].lastValue;
-      deviceChannel.$save({ deviceId: device.deviceId, channelId: channel });
+      deviceChannel.value = device.channels[channelInfo.idx].lastValue;
+      deviceChannel.$save({ deviceId: device.deviceId, channelId: channelInfo.id });
     };
 
     $scope.addDevice = function () {

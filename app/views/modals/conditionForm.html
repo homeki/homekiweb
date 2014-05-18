@@ -17,13 +17,11 @@
   <div ng-show="condition.type == 'channelvalue'">
     <div class="form-group">
       <label for="device">Device</label>
-      <select id="device" class="form-control" ng-model="condition.deviceId">
-        <option ng-repeat="device in devices" value="{{ device.deviceId }}" ng-bind="device.name"></option>
-      </select>
+      <select id="device" class="form-control" ng-options="device.deviceId as device.name for device in devices" ng-model="condition.deviceId"></select>
     </div>
     <div class="form-group">
       <label for="channel">Channel</label>
-      <input type="number" ng-model="condition.channel" class="form-control" id="channel" placeholder="Channel">
+      <select id="channel" class="form-control" ng-options="channel.id as channel.name for channel in getChannels(condition.deviceId)" ng-model="condition.channel"></select>
     </div>
     <div class="form-group">
       <label for="operator">Operator</label>

@@ -17,13 +17,12 @@
   <div ng-show="action.type == 'changechannelvalue'">
     <div class="form-group">
       <label for="device">Device</label>
-      <select id="device" class="form-control" ng-model="action.deviceId">
-        <option ng-repeat="device in devices" value="{{ device.deviceId }}" ng-bind="device.name"></option>
-      </select>
+      <select id="device" class="form-control" ng-options="device.deviceId as device.name for device in devices" ng-model="action.deviceId"></select>
     </div>
     <div class="form-group">
       <label for="channel">Channel</label>
-      <input type="number" ng-model="action.channel" class="form-control" id="channel" placeholder="Channel">
+      <select id="channel" class="form-control" ng-options="channel.id as channel.name for channel in getChannels(action.deviceId)" ng-model="action.channel">
+      </select>
     </div>
     <div class="form-group">
       <label for="value">Value</label>
@@ -35,8 +34,7 @@
   <div ng-show="action.type == 'triggeractiongroup'">
     <div class="form-group">
       <label for="actionGroup">Action Group</label>
-      <select id="actionGroup" class="form-control" ng-model="action.actionGroupId">
-        <option ng-repeat="actionGroup in actionGroups" value="{{ actionGroup.actionGroupId }}" ng-bind="actionGroup.name"></option>
+      <select id="actionGroup" class="form-control" ng-options="actionGroup.actionGroupId as actionGroup.name for actionGroup in actionGroups" ng-model="action.actionGroupId">
       </select>
     </div>
   </div>

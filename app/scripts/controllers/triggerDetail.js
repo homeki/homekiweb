@@ -11,7 +11,7 @@ angular.module('app')
     $scope.formatConditionDescription = function (condition) {
       switch (condition.type) {
         case 'channelvalue':
-          return $sce.trustAsHtml('when <b>channel ' + condition.channel + '</b> on <b>' + cache.getDeviceName(condition.deviceId) + '</b> is <b>' + util.formatOperator(condition.operator) + ' ' + condition.value + '</b>');
+          return $sce.trustAsHtml('when <b>channel ' + cache.getChannelName(condition.deviceId, condition.channel) + '</b> on <b>' + cache.getDeviceName(condition.deviceId) + '</b> is <b>' + util.formatOperator(condition.operator) + ' ' + condition.value + '</b>');
         case 'minute':
           return $sce.trustAsHtml('at <b>' + util.formatTime(condition.hour, condition.minute) + '</b> on day(s) <b>' + condition.day + '</b> and weekdays <b>' + condition.weekday + '</b>');
         case 'specialvalue':

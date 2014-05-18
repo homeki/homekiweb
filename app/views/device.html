@@ -21,21 +21,25 @@
       <div class="fixedheight panel-body">
         <!-- switch -->
         <div ng-show="device.type == 'switch'">
-          <hk-toggle-switch toggle-change="setChannel(device, 0)" ng-model="device.channelValues[0].lastValue"></hk-toggle-switch>
+          <hk-toggle-switch toggle-change="setChannel(device, device.meta.switch)" ng-model="device.channels[device.meta.switch.idx].lastValue"></hk-toggle-switch>
+        </div>
+        <!-- switchmeter -->
+        <div ng-show="device.type == 'switchmeter'">
+          <hk-toggle-switch toggle-change="setChannel(device, device.meta.switch)" ng-model="device.channels[device.meta.switch.idx].lastValue"></hk-toggle-switch>
         </div>
         <!-- dimmer -->
         <div ng-show="device.type == 'dimmer'">
           <div class="pull-left fixedwidth">
-            <hk-toggle-switch toggle-change="setChannel(device, 0)" ng-model="device.channelValues[0].lastValue"></hk-toggle-switch>
+            <hk-toggle-switch toggle-change="setChannel(device, device.meta.switch)" ng-model="device.channels[device.meta.switch.idx].lastValue"></hk-toggle-switch>
           </div>
           <div class="top-padded">
-            <hk-slider slider-change="setChannel(device, 1)" ng-model="device.channelValues[1].lastValue"></hk-slider>
+            <hk-slider slider-change="setChannel(device, device.meta.level)" ng-model="device.channels[device.meta.level.idx].lastValue"></hk-slider>
           </div>
         </div>
         <!-- thermometer -->
         <div ng-show="device.type == 'thermometer'">
           <div class="thermometer">
-            {{ device.channelValues[0].lastValue }} °C
+            {{ device.channels[device.meta.temperature.idx].lastValue }} °C
           </div>
         </div>
       </div>

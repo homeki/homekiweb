@@ -6,6 +6,7 @@ angular.module('app')
     $scope.formatType = util.formatConditionType;
     $scope.formatOperator = util.formatOperator;
     $scope.formatSource = util.formatSource;
+    $scope.getChannels = cache.getChannels;
 
     if (condition) {
       $scope.editMode = true;
