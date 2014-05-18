@@ -21,6 +21,7 @@ angular.module('app')
       TriggerAction: $resource(DEV_SERVER + '/api/triggers/:triggerId/actions/:actionId', { triggerId: '@triggerId', actionId: '@actionId' }),
       ActionGroup: $resource(DEV_SERVER + '/api/actiongroups/:actionGroupId', { actionGroupId: '@actionGroupId' }),
       ActionGroupAction: $resource(DEV_SERVER + '/api/actiongroups/:actionGroupId/actions/:actionId', { actionGroupId: '@actionGroupId', actionId: '@actionId'}),
-      Server: $resource(DEV_SERVER + '/api/server')
+      Server: $resource(DEV_SERVER + '/api/server'),
+      eventStreamUrl: DEV_SERVER + '/api/event/stream'
     };
   });

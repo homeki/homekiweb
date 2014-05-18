@@ -1,7 +1,32 @@
 'use strict';
 
 angular.module('app')
-  .factory('cache', function (api) {
+  .factory('cache', function ($rootScope, api) {
+    function updateChannelValue(changeEvent) {
+      for (var i = 0; i < devices.length; i++) {
+        var d = devices[i];
+        if (d.deviceId === changeEvent.deviceId) {
+          for (var j = 0; j < d.channels.length; j++) {
+            var c = d.channels[j];
+            if (c.id === changeEvent.channel) {
+              c.lastValue = changeEvent.value;
+              $rootScope.$apply();
+              return;
+            }
+          }
+        }
+      }
+    }
+
+    function subscribeToEvents() {
+      if (!window.EventSource) return;
+      var source = new EventSource(api.eventStreamUrl);
+      source.addEventListener('message', function(e) {
+        var changeEvent = JSON.parse(e.data);
+        updateChannelValue(changeEvent);
+      }, false);
+    }
+
     function extendWithMeta() {
       for (var i = 0; i < devices.length; i++) {
         var d = devices[i];
@@ -14,6 +39,8 @@ angular.module('app')
           temperature: findIdForChannelName(d.channels, 'Temperature')
         };
       }
+
+      subscribeToEvents();
     }
 
     var devices = api.Device.query(extendWithMeta);
