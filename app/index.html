@@ -1,6 +1,5 @@
 <!doctype html>
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,9 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="icon" type="image/png" href="/favicon.png" />
     <!-- build:css styles/vendor.css -->
-    <link rel="stylesheet" href="styles/bootstrap.css" />
-    <!-- bower:css -->
-    <!-- endbower -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
@@ -21,40 +18,47 @@
     <!-- endbuild -->
   </head>
   <body ng-app="app">
+    <nav class="navbar navbar-default navbar-static-top" ng-controller="HeaderCtrl">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" ng-click="collapsed = !collapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/#/">Homeki Web</a>
+        </div>
+
+        <div class="collapse navbar-collapse" collapse="collapsed">
+          <ul class="nav navbar-nav">
+            <li ng-class="{active: routeIs('/devices')}"><a ng-href="#/devices">Devices</a></li>
+            <li ng-class="{active: routeIs('/triggers')}"><a ng-href="#/triggers">Triggers</a></li>
+            <li ng-class="{active: routeIs('/actiongroups')}"><a ng-href="#/actiongroups">Action Groups</a></li>
+            <li ng-class="{active: routeIs('/configuration')}"><a ng-href="#/configuration">Configuration</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <div class="container">
-      <div class="header" ng-controller="HeaderCtrl">
-        <h3>Homeki Web</h3>
-        <ul class="nav nav-pills nav-stacked bottom-margin">
-          <li ng-class="{active: routeIs('/devices')}"><a ng-href="#/devices">Devices</a></li>
-          <li ng-class="{active: routeIs('/triggers')}"><a ng-href="#/triggers">Triggers</a></li>
-          <li ng-class="{active: routeIs('/actiongroups')}"><a ng-href="#/actiongroups">Action Groups</a></li>
-          <li ng-class="{active: routeIs('/configuration')}"><a ng-href="#/configuration">Configuration</a></li>
-        </ul>
-        <div class="clearfix"></div>
-      </div>
-
       <ng-view></ng-view>
-
-      <div class="footer">
-        <a href="http://www.github.com/homeki/homekiweb">github.com/homeki/homekiweb</a>
-      </div>
     </div>
+
+    <!--<div class="container">-->
+      <!--<div class="footer">-->
+        <!--<a href="http://www.github.com/homeki/homekiweb">github.com/homeki/homekiweb</a>-->
+      <!--</div>-->
+    <!--</div>-->
 
     <hk-spinner></hk-spinner>
     <hk-message></hk-message>
 
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
-
     <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -81,5 +85,5 @@
     <script src="scripts/services/loadingIndicator.js"></script>
     <script src="scripts/services/util.js"></script>
     <!-- endbuild -->
-</body>
+  </body>
 </html>

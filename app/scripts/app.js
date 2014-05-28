@@ -27,7 +27,10 @@ angular.module('app', ['ngResource', 'ngRoute', 'ui.bootstrap'])
         templateUrl: 'views/configuration.html',
         controller: 'ConfigurationCtrl'
       })
-      .otherwise({
+      .when('/', {
         redirectTo: '/devices'
+      })
+      .otherwise({
+        templateUrl: 'views/error404.html'
       });
   });

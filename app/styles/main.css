@@ -1,8 +1,3 @@
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
 textarea {
   resize: none;
 }
@@ -13,23 +8,6 @@ textarea {
 
 .clickable-panel .panel-heading {
   cursor: pointer;
-}
-
-.header,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.header {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 19px;
 }
 
 .col-md-4, .col-md-6, .col-md-12 {
@@ -43,8 +21,8 @@ textarea {
   border-top: 1px solid #e5e5e5;
 }
 
-.content {
-  margin: 5px 0;
+.navbar {
+  margin-bottom: 0;
 }
 
 .fixedheight {
@@ -74,30 +52,6 @@ textarea {
 
 .sub-menu .col-md-12 {
   padding: 0 5px;
-}
-
-/* tablet */
-@media screen and (min-width: 768px) {
-  .header,
-  .content,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .header .nav-stacked > li {
-    float: left;
-  }
-  .header .nav-stacked > li + li {
-    margin-top: 0;
-    margin-left: 2px;
-  }
-  .header h3 {
-    float: left;
-  }
-  .header ul {
-    float: right;
-  }
 }
 
 /* desktop */
