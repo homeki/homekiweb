@@ -47,11 +47,15 @@ textarea {
 }
 
 .sub-menu {
-  margin: 5px 0;
+  margin-top: 5px;
 }
 
 .sub-menu .col-md-12 {
   padding: 0 5px;
+}
+
+.content {
+  margin-top: 5px;
 }
 
 /* desktop */
