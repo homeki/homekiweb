@@ -15,6 +15,11 @@
         <label for="name">Server Name</label>
         <input type="text" ng-model="server.name" class="form-control" id="name" placeholder="Server Name">
       </div>
+      <div class="form-group">
+        <label for="name">Server Hostname</label>
+        <input type="text" ng-model="server.hostname" class="form-control" id="hostname" placeholder="Server Hostname">
+        <p class="help-block">This hostname will be returned as response to clients' broadcasts searching for Homeki servers. Enter as full URL.</p>
+      </div>
     </accordion-group>
     <accordion-group heading="Server Location" class="clickable-panel">
       <div class="form-group">
