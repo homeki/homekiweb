@@ -1,12 +1,12 @@
 <project>
-	<property name="version" value="0.2.7" />
+	<property name="version" value="0.2.8" />
 
 	<path id="ant.classpath">
 		<fileset dir="." includes="*.jar" />
 	</path>
 
 	<taskdef name="deb" classname="com.googlecode.ant_deb_task.Deb" classpathref="ant.classpath" />
-		
+
 	<target name="clean">
 		<delete dir="../build" />
 	</target>
