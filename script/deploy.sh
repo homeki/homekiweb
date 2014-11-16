@@ -6,8 +6,6 @@ set -e
 
 DEB_CODENAME=$1
 
-grunt build
-
 echo $GPG_PRIVATE_KEY | base64 --decode > homeki-private-gpg.asc
 set +e
 gpg --import homeki-private-gpg.asc

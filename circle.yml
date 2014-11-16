@@ -6,6 +6,10 @@ dependencies:
   pre:
     - sudo apt-get update; sudo apt-get install devscripts debhelper
 
+test:
+  override:
+    - grunt build
+
 deployment:
   unstable:
     branch: develop
