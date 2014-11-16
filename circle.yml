@@ -1,0 +1,13 @@
+machine:
+  node:
+    version: 0.10.33
+
+dependencies:
+  pre:
+    - sudo apt-get update; sudo apt-get install devscripts debhelper
+
+deployment:
+  unstable:
+    branch: develop
+    commands:
+      - ./script/deploy.sh unstable
