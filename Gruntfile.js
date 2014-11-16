@@ -237,6 +237,34 @@ module.exports = function (grunt) {
       }
     },
 
+    // Builds a debian package
+    debian_package: {
+      options: {
+          maintainer: {
+              name: "Homeki Development Team",
+              email: "contact@homeki.com"
+          },
+          name: "homeki-web",
+          short_description: "Web root for Homeki web interface.",
+          long_description: "Provides a web interface (GUI) for accessing Homeki. This package distributes the web root, but it is hosted by the Homeki process.",
+          version: "2.0.0",
+          build_number: "1",
+          dependencies: "homeki",
+          postinst: { src: '../script/postinst' },
+          postrm: { src: '../script/postrm' },
+          preinst: { src: '../script/preinst' },
+          prerm: { src: '../script/prerm' }
+      },
+      files: [
+          {
+              expand: true,
+              cwd: 'dist/',
+              src: ['**/*.*'],
+              dest: '/opt/homeki/www'
+          }
+      ]
+    },
+
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
@@ -279,7 +307,8 @@ module.exports = function (grunt) {
     'uglify',
     'rev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'debian_package'
   ]);
 
   grunt.registerTask('default', [
