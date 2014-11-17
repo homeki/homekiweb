@@ -5,8 +5,11 @@ machine:
 dependencies:
   pre:
     - sudo apt-get update; sudo apt-get install devscripts debhelper
+    - sudo npm install -g grunt-cli
 
 test:
+  pre:
+    - bower install
   override:
     - grunt build
 
