@@ -11,5 +11,5 @@ set +e
 gpg --import homeki-private-gpg.asc
 rm homeki-private-gpg.asc
 set -e
-mv build/dist/homeki_*_all.deb build/dist/homeki_${DEB_CODENAME}.deb
+mv tmp/homeki-web_*_all.deb tmp/homeki-web_${DEB_CODENAME}.deb
 #bundle exec deb-s3 upload --endpoint s3-eu-west-1.amazonaws.com --sign $GPG_KEY_ID --access-key-id=$S3_ACCESS_KEY --secret-access-key=$S3_ACCESS_SECRET --codename $DEB_CODENAME --prefix packages --bucket repository.homeki.com ../build/dist/homeki_${DEB_CODENAME}.deb
