@@ -250,10 +250,10 @@ module.exports = function (grunt) {
         version: "2.0.0",
         build_number: "1",
         dependencies: "homeki",
-        postinst: { src: '../script/postinst' },
-        postrm: { src: '../script/postrm' },
-        preinst: { src: '../script/preinst' },
-        prerm: { src: '../script/prerm' }
+        postinst: { src: 'script/postinst' },
+        postrm: { src: 'script/postrm' },
+        preinst: { src: 'script/preinst' },
+        prerm: { src: 'script/prerm' }
       },
       files: {
         expand: true,
