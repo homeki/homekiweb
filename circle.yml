@@ -1,11 +1,14 @@
 machine:
+  environment:
+    BUILD_META_HOME: /home/ubuntu/buildmeta
   node:
     version: 0.10.33
 
 dependencies:
-  pre:
-    - sudo apt-get update; sudo apt-get install devscripts debhelper
-    - npm install -g grunt-cli bower
+  cache_directories:
+    - ~/buildmeta
+  override:
+    - script/install-dependencies.sh
 
 test:
   pre:
