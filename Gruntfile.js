@@ -281,9 +281,9 @@ module.exports = function (grunt) {
   grunt.registerTask('set_version', function() {
     grunt.task.requires('gitinfo');
 
-    var gitSha = grunt.template.process('<%= gitinfo.local.branch.current.SHA.substring(0,7) %>');
-    var buildDate = new Date().getTime();
-    var version = '3.' + buildDate + '-' + gitSha;
+    var sha = grunt.template.process('<%= gitinfo.local.branch.current.SHA.substring(0,7) %>');
+    var timestamp = new Date().getTime() / 1000;
+    var version = '3.' + timestamp + '-' + sha;
 
     grunt.config.set('version', version);
   });
