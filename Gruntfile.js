@@ -282,7 +282,7 @@ module.exports = function (grunt) {
     grunt.task.requires('gitinfo');
 
     var sha = grunt.template.process('<%= gitinfo.local.branch.current.SHA.substring(0,7) %>');
-    var timestamp = new Date().getTime() / 1000;
+    var timestamp = parseInt(new Date().getTime() / 1000);
     var version = '3.' + timestamp + '-' + sha;
 
     grunt.config.set('version', version);
