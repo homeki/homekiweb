@@ -239,27 +239,6 @@ module.exports = function (grunt) {
       }
     },
 
-    shell: {
-      git_timestamp: {
-        command: 'git show -s --format=%ct HEAD',
-        options: {
-          callback: function log(err, stdout, stderr, cb) {
-            version += stdout.trim() + '.'
-            cb();
-          }
-        }
-      },
-      git_sha: {
-        command: 'git show -s --pretty=%h',
-        options: {
-          callback: function log(err, stdout, stderr, cb) {
-            version += stdout.trim()
-            cb();
-          }
-        }
-      }
-    },
-
     // Builds a debian package
     debian_package: {
       options: {
@@ -270,7 +249,7 @@ module.exports = function (grunt) {
         name: "homeki-web",
         short_description: "Web root for Homeki web interface.",
         long_description: "Provides a web interface (GUI) for accessing Homeki. This package distributes the web root, but it is hosted by the Homeki process.",
-        version: version,
+        version: '<%= version %>',
         build_number: "1",
         dependencies: "homeki",
         postinst: { src: 'script/postinst' },
@@ -297,6 +276,16 @@ module.exports = function (grunt) {
         'svgmin'
       ]
     }
+  });
+
+  grunt.registerTask('set_version', function() {
+    grunt.task.requires('gitinfo');
+
+    var gitSha = grunt.template.process('<%= gitinfo.local.branch.current.SHA.substring(0,7) %>');
+    var buildDate = new Date().getTime();
+    var version = '3.' + buildDate + '-' + gitSha;
+
+    grunt.config.set('version', version);
   });
 
   grunt.registerTask('serve', function (target) {
@@ -329,8 +318,8 @@ module.exports = function (grunt) {
     'rev',
     'usemin',
     'htmlmin',
-    'shell:git_timestamp',
-    'shell:git_sha',
+    'gitinfo',
+    'set_version',
     'debian_package'
   ]);
 
