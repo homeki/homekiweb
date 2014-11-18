@@ -7,7 +7,7 @@ machine:
 dependencies:
   cache_directories:
     - ~/buildmeta
-  override:
+  pre:
     - script/install-dependencies.sh
 
 test:
