@@ -1,9 +1,9 @@
-homekiweb
-=========
+# homekiweb
+
 The web interface to [homekicore](../../../homekicore).
 
-Run locally
------------
+## Run locally
+
 Prereqs needed:
  * nodejs and npm
 
@@ -15,3 +15,7 @@ Prereqs needed:
 5. `grunt serve`
 
 This will start a web server on port 9000. Access it using http://localhost:9000/. If you want to run in minified mode (as in production), use `grunt serve:dist`.
+
+## Build release
+
+Releases are available in a Debian repository at http://repository.homeki.com. There are two "suites", `unstable` and `stable`. `git push` to `develop` updates the package in `unstable`, `git push` to `master` updates the package in `stable`.
